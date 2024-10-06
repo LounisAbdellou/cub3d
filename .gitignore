@@ -1,0 +1,5 @@
+cub3D
+objs
+*.a
+*.o
+mlx-test
