@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: solid_42 </var/spool/mail/solid_42>        +#+  +:+       +#+        */
+/*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/06 12:08:52 by solid_42          #+#    #+#             */
-/*   Updated: 2024/10/10 19:33:37 by labdello         ###   ########.fr       */
+/*   Created: 2024/10/07 16:03:10 by labdello          #+#    #+#             */
+/*   Updated: 2024/10/14 18:05:12 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef MAP_H
+# define MAP_H
 
-void	init_env(t_env *env)
-{
-	env->mlx = mlx_init();
-	mlx_get_screen_size(env->mlx, &env->screen_w, &env->screen_h);
-	env->screen_h = env->screen_h - 37;
-	env->win = NULL;
-	env->map = NULL;
-}
+# define map_width 24
+# define map_height 24
+
+extern int	world_map[map_width][map_height];
+
+#endif

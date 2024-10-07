@@ -6,7 +6,7 @@
 /*   By: solid_42 </var/spool/mail/solid_42>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 12:12:47 by solid_42          #+#    #+#             */
-/*   Updated: 2024/10/06 12:45:30 by solid_42         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:53:46 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,11 @@ int	handle_keydown(int keycode, t_env *env)
 {
 	if (keycode == E_KEY_ESCAPE)
 		return (destroy(env));
-	else if (keycode == E_KEY_FORWARD)
-		return (1);
-	else if (keycode == E_KEY_BACKWARD)
-		return (1);
-	else if (keycode == E_KEY_LEFT)
-		return (1);
-	else if (keycode == E_KEY_RIGHT)
-		return (1);
+	else if (keycode == E_KEY_FORWARD || keycode == E_KEY_BACKWARD)
+		return (move(keycode, env), 1);
+	else if (keycode == E_KEY_LEFT || keycode == E_KEY_RIGHT)
+		return (move(keycode, env), 1);
+	else if (keycode == 65363 || keycode == 65361)
+		return (rotate(keycode, env), 1);
 	return (0);
 }
