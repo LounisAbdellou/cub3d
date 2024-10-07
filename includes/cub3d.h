@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/07 15:56:33 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:04:55 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ typedef struct s_env
 	int		screen_h;
 	t_point	current_pos;
 }	t_env;
+
+// RENDERING
+void	render(t_env *env);
 
 // ENV
 int		destroy(t_env *env);
