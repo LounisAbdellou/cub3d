@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: solid_42 </var/spool/mail/solid_42>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/06 12:08:52 by solid_42          #+#    #+#             */
-/*   Updated: 2024/10/23 17:51:04 by labdello         ###   ########.fr       */
+/*   Created: 2024/10/08 22:18:59 by solid_42          #+#    #+#             */
+/*   Updated: 2024/10/08 22:19:20 by solid_42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-void	init_env(t_env *env)
+void	ft_swap(int *a, int *b)
 {
-	env->mlx = mlx_init();
-	mlx_get_screen_size(env->mlx, &env->screen_w, &env->screen_h);
-	env->screen_h = env->screen_h - 37;
-	env->fov_rd = (FOV * M_PI) / 180;
-	env->win = NULL;
-	env->map = NULL;
+	int	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
