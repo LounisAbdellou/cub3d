@@ -9,9 +9,11 @@ CFLAGS = -Wall -Wextra -Werror -D PATH="\"$(shell pwd)\"" -Iincludes -Imlx
 OBJ_DIR = objs
 SRC_DIR = srcs
 ENV_DIR = env
+RENDER_DIR = rendering
 
 ENV = $(addprefix $(ENV_DIR)/, init.c utils.c error.c)
-SRCS = $(addprefix $(SRC_DIR)/, $(ENV) main.c)
+RENDER = $(addprefix $(RENDER_DIR)/, renderer.c)
+SRCS = $(addprefix $(SRC_DIR)/, $(ENV) $(RENDER) main.c)
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
@@ -28,6 +30,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(RENDER_DIR)
 
 clean:
 	@make clean -C libft

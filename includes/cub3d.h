@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/07 16:04:55 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/08 19:44:53 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "mlx.h"
 # include "libft.h"
+# include <stdio.h>
 
 # ifndef PATH
 #  define PATH "."
@@ -31,18 +32,26 @@ typedef enum e_key
 
 typedef struct s_point
 {
-	double	x;
-	double	y;
+	int	x;
+	int	y;
+	int	reverse;
 }	t_point;
+
+typedef struct s_player
+{
+	int		direction;
+	t_point	current_pos;
+}	t_player;
 
 typedef struct s_env
 {
-	void	*mlx;
-	void	*win;
-	char	**map;
-	int		screen_w;
-	int		screen_h;
-	t_point	current_pos;
+	void		*mlx;
+	void		*win;
+	char		**map;
+	int			screen_w;
+	int			screen_h;
+	int			steep;
+	t_player	player;
 }	t_env;
 
 // RENDERING
