@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 16:03:10 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/07 16:04:14 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/08 22:35:44 by solid_42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define map_width 24
 # define map_height 24
 
-int	world_map[map_width][map_height]=
+int	world_map[map_width][map_height] =
 {
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},

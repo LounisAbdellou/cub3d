@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/08 19:44:53 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/08 22:34:03 by solid_42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "mlx.h"
 # include "libft.h"
 # include <stdio.h>
+# include <math.h>
 
 # ifndef PATH
 #  define PATH "."
@@ -56,6 +57,8 @@ typedef struct s_env
 
 // RENDERING
 void	render(t_env *env);
+void	ft_draw_line(t_env *env, t_point p1, t_point p2, long color);
+void	ft_draw_square(t_env *env, t_point p, int size, long color);
 
 // ENV
 int		destroy(t_env *env);

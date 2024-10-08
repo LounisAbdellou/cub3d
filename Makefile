@@ -12,7 +12,7 @@ ENV_DIR = env
 RENDER_DIR = rendering
 
 ENV = $(addprefix $(ENV_DIR)/, init.c utils.c error.c)
-RENDER = $(addprefix $(RENDER_DIR)/, renderer.c)
+RENDER = $(addprefix $(RENDER_DIR)/, renderer.c utils.c)
 SRCS = $(addprefix $(SRC_DIR)/, $(ENV) $(RENDER) main.c)
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
