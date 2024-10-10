@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/08 22:34:03 by solid_42         ###   ########.fr       */
+/*   Updated: 2024/10/10 19:34:38 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,18 @@ typedef struct s_point
 
 typedef struct s_player
 {
-	int		direction;
-	t_point	current_pos;
+	int		angle;
+	t_point	pos;
 }	t_player;
+
+typedef struct s_img
+{
+	void	*ptr;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_img;
 
 typedef struct s_env
 {
@@ -51,7 +60,9 @@ typedef struct s_env
 	char		**map;
 	int			screen_w;
 	int			screen_h;
+	int			offset;
 	int			steep;
+	t_img		img;
 	t_player	player;
 }	t_env;
 
@@ -59,6 +70,7 @@ typedef struct s_env
 void	render(t_env *env);
 void	ft_draw_line(t_env *env, t_point p1, t_point p2, long color);
 void	ft_draw_square(t_env *env, t_point p, int size, long color);
+void	ft_put_pixel(t_env *env, int x, int y, int color);
 
 // ENV
 int		destroy(t_env *env);

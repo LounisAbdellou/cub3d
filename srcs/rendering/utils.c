@@ -6,11 +6,19 @@
 /*   By: solid_42 </var/spool/mail/solid_42>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 22:11:46 by solid_42          #+#    #+#             */
-/*   Updated: 2024/10/08 22:30:36 by solid_42         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:00:46 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	ft_put_pixel(t_env *env, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = env->img.addr + (y * env->img.line_length + x * (env->img.bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
 
 static void	ft_draw_line_loop(t_env *env, t_point p1, t_point p2, long color)
 {
@@ -23,13 +31,13 @@ static void	ft_draw_line_loop(t_env *env, t_point p1, t_point p2, long color)
 	{
 		if (env->steep)
 		{
-			mlx_pixel_put(env->mlx, env->win, y, x, color);
-			mlx_pixel_put(env->mlx, env->win, y + 1, x, color);
+			ft_put_pixel(env, y, x, color);
+			ft_put_pixel(env, y + 1, x, color);
 		}
 		else
 		{
-			mlx_pixel_put(env->mlx, env->win, x, y, color);
-			mlx_pixel_put(env->mlx, env->win, x, y + 1, color);
+			ft_put_pixel(env, x, y, color);
+			ft_put_pixel(env, x, y + 1, color);
 		}
 		x++;
 	}
@@ -63,7 +71,7 @@ void	ft_draw_square(t_env *env, t_point p, int size, long color)
 		j = 0;
 		while (j < size)
 		{
-			mlx_pixel_put(env->mlx, env->win, p.x + i, p.y + j, color);
+			ft_put_pixel(env, p.x + i, p.y + j, color);
 			j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:01:50 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/07 16:01:44 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/10 19:34:14 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ int	main(int ac, char **av)
 
 	(void)av;
 	init_env(&env);
+	env.player.pos.x = 1 * env.offset;
+	env.player.pos.y = 1 * env.offset;
+	env.player.angle = 0;
 	if (ac != 2)
 		return_error("Wrong number of arguments\n", 1, &env);
 	cub3d(&env);
