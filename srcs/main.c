@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:01:50 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/16 01:51:45 by solid_42         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:28:57 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	cub3d(t_env *env)
 	env->win = mlx_new_window(env->mlx, env->screen_w, env->screen_h, "cub3d");
 	if (!env->win)
 		return_error("Error initializing window\n", 1, env);
+	mlx_hook(env->win, 6, 1L << 6, handle_mouse, env);
 	mlx_hook(env->win, 2, 1L << 0, handle_keydown, env);
 	mlx_hook(env->win, 17, 1L << 0, destroy, env);
 	render(env);

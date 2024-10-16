@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/16 19:05:44 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:51:16 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int		get_best_inter(t_env *env, t_point pos, float angle);
 
 // ENV
 int		destroy(t_env *env);
+int		handle_mouse(int x, int y, t_env *env);
 int		handle_keydown(int keycode, t_env *env);
 void	free_env(t_env *env);
 void	init_env(t_env *env);

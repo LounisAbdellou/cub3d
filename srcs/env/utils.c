@@ -6,7 +6,7 @@
 /*   By: solid_42 </var/spool/mail/solid_42>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 12:12:47 by solid_42          #+#    #+#             */
-/*   Updated: 2024/10/16 15:53:46 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:54:17 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,17 @@ int	destroy(t_env *env)
 	if (env != NULL)
 		free_env(env);
 	exit(0);
+}
+
+int	handle_mouse(int x, int y, t_env *env)
+{
+	(void)y;
+	if (x > env->screen_w / 2)
+		printf("right\n");
+	else if (x < env->screen_w / 2)
+		printf("left\n");
+	mlx_mouse_move(env->mlx, env->win, env->screen_w / 2, env->screen_h / 2);
+	return (1);
 }
 
 int	handle_keydown(int keycode, t_env *env)
