@@ -9,9 +9,11 @@ CFLAGS = -Wall -Wextra -Werror -D PATH="\"$(shell pwd)\"" -Iincludes -Imlx
 OBJ_DIR = objs
 SRC_DIR = srcs
 ENV_DIR = env
+PARSING_DIR = parsing
 
 ENV = $(addprefix $(ENV_DIR)/, init.c utils.c error.c)
-SRCS = $(addprefix $(SRC_DIR)/, $(ENV) main.c)
+PARSING = $(addprefix $(PARSING_DIR)/, parser.c checker.c utils.c env.c lst_map.c errors.c)
+SRCS = $(addprefix $(SRC_DIR)/, $(ENV) $(PARSING) main.c)
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
@@ -28,6 +30,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSING_DIR)
 
 clean:
 	@make clean -C libft

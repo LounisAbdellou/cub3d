@@ -6,7 +6,7 @@
 /*   By: solid_42 </var/spool/mail/solid_42>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 12:08:52 by solid_42          #+#    #+#             */
-/*   Updated: 2024/10/06 12:47:25 by solid_42         ###   ########.fr       */
+/*   Updated: 2024/10/10 14:45:49 by rbouselh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,8 @@ void	init_env(t_env *env)
 	env->screen_h = env->screen_h - 37;
 	env->win = NULL;
 	env->map = NULL;
+	env->player = ft_calloc(1, sizeof(t_player));
+	env->texture = ft_calloc(1, sizeof(t_texture));
+	if (!(env->player) || !(env->texture))
+		return_error("Problem on env init\n", 1, env);
 }
