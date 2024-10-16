@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/16 19:51:16 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/17 01:09:18 by solid_42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 
 # define TILE_SIZE 42
 # define DR 0.0174533
+# define FOV 60
+# define FOV_RD (FOV * M_PI) / 180
 
 typedef enum e_key
 {
@@ -34,6 +36,8 @@ typedef enum e_key
 	E_KEY_LEFT = 97,
 	E_KEY_RIGHT = 100,
 	E_KEY_ESCAPE = 65307,
+	E_KEY_ARROW_LEFT = 65361,
+	E_KEY_ARROW_RIGHT = 65363,
 }	t_key;
 
 typedef struct s_point

@@ -6,7 +6,7 @@
 /*   By: solid_42 </var/spool/mail/solid_42>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 12:12:47 by solid_42          #+#    #+#             */
-/*   Updated: 2024/10/16 19:54:17 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/17 00:31:14 by solid_42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int	handle_mouse(int x, int y, t_env *env)
 {
 	(void)y;
 	if (x > env->screen_w / 2)
-		printf("right\n");
+		rotate(E_KEY_ARROW_LEFT, env);
 	else if (x < env->screen_w / 2)
-		printf("left\n");
+		rotate(E_KEY_ARROW_RIGHT, env);
 	mlx_mouse_move(env->mlx, env->win, env->screen_w / 2, env->screen_h / 2);
 	return (1);
 }
@@ -51,7 +51,7 @@ int	handle_keydown(int keycode, t_env *env)
 		return (move(keycode, env), 1);
 	else if (keycode == E_KEY_LEFT || keycode == E_KEY_RIGHT)
 		return (move(keycode, env), 1);
-	else if (keycode == 65363 || keycode == 65361)
+	else if (keycode == E_KEY_ARROW_RIGHT || keycode == E_KEY_ARROW_LEFT)
 		return (rotate(keycode, env), 1);
 	return (0);
 }

@@ -82,13 +82,13 @@ void	move(int keycode, t_env *env)
 
 void	rotate(int keycode, t_env *env)
 {
-	if (keycode == 65361)
+	if (keycode == E_KEY_ARROW_LEFT)
 	{
 		env->player.angle -= DR * 2;
 		if (env->player.angle < 0)
 			env->player.angle += M_PI * 2;
 	}
-	else if (keycode == 65363)
+	else if (keycode == E_KEY_ARROW_RIGHT)
 	{
 		env->player.angle += DR * 2;
 		if (env->player.angle > M_PI * 2)
