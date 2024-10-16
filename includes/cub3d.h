@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/16 19:05:44 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/23 17:51:42 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 # define TILE_SIZE 42
 # define DR 0.0174533
+# define FOV 60
 
 typedef enum e_key
 {
@@ -34,6 +35,8 @@ typedef enum e_key
 	E_KEY_LEFT = 97,
 	E_KEY_RIGHT = 100,
 	E_KEY_ESCAPE = 65307,
+	E_KEY_ARROW_LEFT = 65361,
+	E_KEY_ARROW_RIGHT = 65363,
 }	t_key;
 
 typedef struct s_point
@@ -41,6 +44,27 @@ typedef struct s_point
 	int	x;
 	int	y;
 }	t_point;
+
+typedef struct s_ray
+{
+	int		index;
+	int		is_v;
+	float	angle;
+	float	distance;
+	float	height;
+}	t_ray;
+
+typedef struct s_texture
+{
+	void	*ptr;
+	char	*addr;
+	char	*path;
+	int		width;
+	int		height;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_texture;
 
 typedef struct s_player
 {
@@ -57,6 +81,14 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_asset
+{
+	t_texture	n;
+	t_texture	s;
+	t_texture	e;
+	t_texture	w;
+}	t_asset;
+
 typedef struct s_env
 {
 	void		*mlx;
@@ -65,8 +97,10 @@ typedef struct s_env
 	int			screen_w;
 	int			screen_h;
 	int			steep;
+	float		fov_rd;
 	t_img		img;
 	t_player	player;
+	t_asset		assets;
 }	t_env;
 
 // RENDERING
@@ -76,10 +110,12 @@ void	ft_draw_square(t_env *env, t_point p, int size, long color);
 void	ft_put_pixel(t_env *env, int x, int y, int color);
 float	get_h_inter(t_env *env, t_point pos, float angl);
 float	get_v_inter(t_env *env, t_point pos, float angl);
-int		get_best_inter(t_env *env, t_point pos, float angle);
+void	init_ray(t_env *env, t_point pos, t_ray *ray);
+float	nor_angle(float angle);
 
 // ENV
 int		destroy(t_env *env);
+int		handle_mouse(int x, int y, t_env *env);
 int		handle_keydown(int keycode, t_env *env);
 void	free_env(t_env *env);
 void	init_env(t_env *env);
@@ -88,7 +124,7 @@ void	return_error(char *error_message, int exit_status, t_env *env);
 // GAMEPLAY
 int		wall_hit(float x, float y, t_env *env);
 void	move(int keycode, t_env *env);
-void	rotate(int keycode, t_env *env);
+void	rotate(int keycode, int distance, int sensi, t_env *env);
 
 // MAP
 void	draw_grid(t_env *env);

@@ -6,11 +6,20 @@
 /*   By: solid_42 </var/spool/mail/solid_42>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 22:11:46 by solid_42          #+#    #+#             */
-/*   Updated: 2024/10/16 15:51:53 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/23 14:58:12 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+float	nor_angle(float angle)
+{
+	if (angle < 0)
+		angle += (2 * M_PI);
+	if (angle > (2 * M_PI))
+		angle -= (2 * M_PI);
+	return (angle);
+}
 
 void	ft_put_pixel(t_env *env, int x, int y, int color)
 {

@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 19:04:57 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/16 19:05:41 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/23 17:06:36 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,23 @@ float	get_v_inter(t_env *env, t_point pos, float angl)
 	return (sqrt(pow(v_x - pos.x, 2) + pow(v_y - pos.y, 2)));
 }
 
-int		get_best_inter(t_env *env, t_point pos, float angle)
+void	init_ray(t_env *env, t_point pos, t_ray *ray)
 {
 	int		inter_h;
 	int		inter_v;
+	float	angle;
 
+	ray->is_v = 0;
+	angle = ray->angle;
 	inter_h = get_h_inter(env, pos, angle);
 	inter_v = get_v_inter(env, pos, angle);
 	if (inter_v <= inter_h)
-		return (inter_v);
-	return (inter_h);
+	{
+		ray->distance = inter_v * cos(nor_angle(angle - env->player.angle));
+		ray->is_v = 1;
+	}
+	else
+		ray->distance = inter_h * cos(nor_angle(angle - env->player.angle));
+	ray->height = (TILE_SIZE / ray->distance) * ((env->screen_w / 2)
+			/ tan(env->fov_rd / 2));
 }
