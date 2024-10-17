@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/17 01:09:18 by solid_42         ###   ########.fr       */
+/*   Updated: 2024/10/17 19:24:19 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ typedef struct s_point
 	int	x;
 	int	y;
 }	t_point;
+
+typedef struct s_ray
+{
+	float	angle;
+	float		distance;
+	float		prev_distance;
+}	t_ray;
 
 typedef struct s_player
 {
@@ -93,7 +100,7 @@ void	return_error(char *error_message, int exit_status, t_env *env);
 // GAMEPLAY
 int		wall_hit(float x, float y, t_env *env);
 void	move(int keycode, t_env *env);
-void	rotate(int keycode, t_env *env);
+void	rotate(int keycode, int distance, int sensi, t_env *env);
 
 // MAP
 void	draw_grid(t_env *env);
