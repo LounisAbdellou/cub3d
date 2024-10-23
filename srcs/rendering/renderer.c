@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:48:19 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/23 17:43:21 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/23 19:56:08 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,30 @@ t_texture	get_texture(t_env *env, t_ray ray)
 	}
 }
 
+// int		get_tex_x(t_env *env, t_ray *ray, t_texture texture)
+// {
+// }
+
 void	draw_wall(t_env *env, t_ray ray, double origin, double end)
 {
-	int			x;
-	int			y;
+	t_point		pos;
+	double		tex_pos;
+	double		step;
 	char		*pixel;
 	t_texture	texture;
 
-	x = 0;
-	y = 0;
+	step = 1.0 * (texture.height / ray.height);
+	tex_pos = (origin - env->screen_h / 2 + ray.height / 2) * step;
 	texture = get_texture(env, ray);
+	pos.x = env->player.pos.x + (cos(ray.angle) * ray.distance);
 	while (origin < end)
 	{
-		pixel = texture.addr + (y * texture.line_length + x
+		pos.y = (int)tex_pos & (texture.height - 1);
+		pixel = texture.addr + (pos.y * texture.line_length + pos.x
 				* (texture.bits_per_pixel / 8));
 		ft_put_pixel(env, ray.index, origin, *(int *)pixel);
 		origin++;
+		tex_pos += step;
 	}
 }
 
