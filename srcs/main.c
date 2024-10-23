@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:01:50 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/23 19:57:46 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/23 23:09:41 by solid_42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ int	main(int ac, char **av)
 	env.player.angle = M_PI * 2;
 	if (ac != 2)
 		return_error("Wrong number of arguments\n", 1, &env);
-	// env.assets.n.path = ft_strdup("./assets/sprites/red.xpm");
-	env.assets.n.path = ft_strdup("./assets/sprites/grayfox.xpm");
+	env.assets.n.path = ft_strdup("./assets/sprites/red.xpm");
 	env.assets.s.path = ft_strdup("./assets/sprites/blue.xpm");
 	env.assets.e.path = ft_strdup("./assets/sprites/green.xpm");
 	env.assets.w.path = ft_strdup("./assets/sprites/yellow.xpm");

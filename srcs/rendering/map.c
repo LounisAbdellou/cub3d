@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:09:41 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/16 16:10:19 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/23 23:08:45 by solid_42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,23 +69,11 @@ void	draw_angle(t_env *env)
 {
 	t_point	p1;
 	t_point	p2;
-	int		inter_h;
-	int		inter_v;
 
-	inter_h = get_h_inter(env, env->player.pos, env->player.angle);
-	inter_v = get_v_inter(env, env->player.pos, env->player.angle);
 	p1.x = env->player.pos.x;
 	p1.y = env->player.pos.y;
-	if (inter_v <= inter_h)
-	{
-		p2.x = p1.x + (cos(env->player.angle) * inter_v);
-		p2.y = p1.y + (sin(env->player.angle) * inter_v);
-	}
-	else
-	{
-		p2.x = p1.x + (cos(env->player.angle) * inter_h);
-		p2.y = p1.y + (sin(env->player.angle) * inter_h);
-	}
+	p2.x = p1.x + (cos(env->player.angle) * 20);
+	p2.y = p1.y + (sin(env->player.angle) * 20);
 	ft_draw_line(env, p1, p2, 0xFFFF00);
 }
 

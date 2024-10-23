@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 19:04:57 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/23 17:06:36 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/23 23:07:14 by solid_42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	inter_check(float angle, float *inter, float *step, int is_horizon)
 	return (1);
 }
 
-float	get_h_inter(t_env *env, t_point pos, float angl)
+float	get_h_inter(t_env *env, t_point pos, float angl, t_ray *ray)
 {
 	float	h_x;
 	float	h_y;
@@ -71,10 +71,12 @@ float	get_h_inter(t_env *env, t_point pos, float angl)
 		h_x += x_step;
 		h_y += y_step;
 	}
+	ray->h_x = h_x;
+	ray->h_y = h_y;
 	return (sqrt(pow(h_x - pos.x, 2) + pow(h_y - pos.y, 2)));
 }
 
-float	get_v_inter(t_env *env, t_point pos, float angl)
+float	get_v_inter(t_env *env, t_point pos, float angl, t_ray *ray)
 {
 	float	v_x;
 	float	v_y;
@@ -95,6 +97,8 @@ float	get_v_inter(t_env *env, t_point pos, float angl)
 		v_x += x_step;
 		v_y += y_step;
 	}
+	ray->v_x = v_x;
+	ray->v_y = v_y;
 	return (sqrt(pow(v_x - pos.x, 2) + pow(v_y - pos.y, 2)));
 }
 
@@ -106,8 +110,8 @@ void	init_ray(t_env *env, t_point pos, t_ray *ray)
 
 	ray->is_v = 0;
 	angle = ray->angle;
-	inter_h = get_h_inter(env, pos, angle);
-	inter_v = get_v_inter(env, pos, angle);
+	inter_h = get_h_inter(env, pos, angle, ray);
+	inter_v = get_v_inter(env, pos, angle, ray);
 	if (inter_v <= inter_h)
 	{
 		ray->distance = inter_v * cos(nor_angle(angle - env->player.angle));

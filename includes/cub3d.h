@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/23 17:51:42 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/23 23:06:54 by solid_42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ typedef struct s_ray
 	float	angle;
 	float	distance;
 	float	height;
+	float	h_x;
+	float	h_y;
+	float	v_x;
+	float	v_y;
 }	t_ray;
 
 typedef struct s_texture
@@ -108,8 +112,8 @@ void	render(t_env *env);
 void	ft_draw_line(t_env *env, t_point p1, t_point p2, long color);
 void	ft_draw_square(t_env *env, t_point p, int size, long color);
 void	ft_put_pixel(t_env *env, int x, int y, int color);
-float	get_h_inter(t_env *env, t_point pos, float angl);
-float	get_v_inter(t_env *env, t_point pos, float angl);
+float	get_h_inter(t_env *env, t_point pos, float angl, t_ray *ray);
+float	get_v_inter(t_env *env, t_point pos, float angl, t_ray *ray);
 void	init_ray(t_env *env, t_point pos, t_ray *ray);
 float	nor_angle(float angle);
 

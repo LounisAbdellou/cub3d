@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:48:19 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/23 19:56:08 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/23 23:06:12 by solid_42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,18 @@ t_texture	get_texture(t_env *env, t_ray ray)
 	}
 }
 
-// int		get_tex_x(t_env *env, t_ray *ray, t_texture texture)
-// {
-// }
+int		get_tex_x(t_ray ray, t_texture texture)
+{
+	double	x;
+
+	if (!ray.is_v)
+		x = (int)fmodf((ray.h_x
+			* (texture.width / TILE_SIZE)), texture.width);
+	else
+		x = (int)fmodf((ray.v_y
+			* (texture.width / TILE_SIZE)), texture.width);
+	return (x);
+}
 
 void	draw_wall(t_env *env, t_ray ray, double origin, double end)
 {
@@ -42,10 +51,10 @@ void	draw_wall(t_env *env, t_ray ray, double origin, double end)
 	char		*pixel;
 	t_texture	texture;
 
+	texture = get_texture(env, ray);
 	step = 1.0 * (texture.height / ray.height);
 	tex_pos = (origin - env->screen_h / 2 + ray.height / 2) * step;
-	texture = get_texture(env, ray);
-	pos.x = env->player.pos.x + (cos(ray.angle) * ray.distance);
+	pos.x = get_tex_x(ray, texture);
 	while (origin < end)
 	{
 		pos.y = (int)tex_pos & (texture.height - 1);
