@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 19:04:57 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/23 23:07:14 by solid_42         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:08:00 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ float	get_v_inter(t_env *env, t_point pos, float angl, t_ray *ray)
 	return (sqrt(pow(v_x - pos.x, 2) + pow(v_y - pos.y, 2)));
 }
 
-void	init_ray(t_env *env, t_point pos, t_ray *ray)
+void	init_ray(t_env *env, t_point pos, t_ray *ray, t_ray *prev_ray)
 {
 	int		inter_h;
 	int		inter_v;
@@ -119,6 +119,8 @@ void	init_ray(t_env *env, t_point pos, t_ray *ray)
 	}
 	else
 		ray->distance = inter_h * cos(nor_angle(angle - env->player.angle));
+	if (inter_v == inter_h)
+		ray->is_v = prev_ray->is_v;
 	ray->height = (TILE_SIZE / ray->distance) * ((env->screen_w / 2)
 			/ tan(env->fov_rd / 2));
 }

@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/23 23:06:54 by solid_42         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:03:03 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	ft_draw_square(t_env *env, t_point p, int size, long color);
 void	ft_put_pixel(t_env *env, int x, int y, int color);
 float	get_h_inter(t_env *env, t_point pos, float angl, t_ray *ray);
 float	get_v_inter(t_env *env, t_point pos, float angl, t_ray *ray);
-void	init_ray(t_env *env, t_point pos, t_ray *ray);
+void	init_ray(t_env *env, t_point pos, t_ray *ray, t_ray *prev_ray);
 float	nor_angle(float angle);
 
 // ENV

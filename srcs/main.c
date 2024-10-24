@@ -6,18 +6,18 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:01:50 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/23 23:09:41 by solid_42         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:39:57 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 int world_map[map_width][map_height] = {
-{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-{1, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 0, 0, 1},
+{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
+{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
+{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0},
+{1, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 0, 1, 0},
 {1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
 {1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0, 1},
 {1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -73,10 +73,10 @@ int	main(int ac, char **av)
 	env.player.angle = M_PI * 2;
 	if (ac != 2)
 		return_error("Wrong number of arguments\n", 1, &env);
-	env.assets.n.path = ft_strdup("./assets/sprites/red.xpm");
-	env.assets.s.path = ft_strdup("./assets/sprites/blue.xpm");
-	env.assets.e.path = ft_strdup("./assets/sprites/green.xpm");
-	env.assets.w.path = ft_strdup("./assets/sprites/yellow.xpm");
+	env.assets.n.path = ft_strdup("./assets/sprites/grayfox.xpm");
+	env.assets.s.path = ft_strdup("./assets/sprites/tony.xpm");
+	env.assets.e.path = ft_strdup("./assets/sprites/bird.xpm");
+	env.assets.w.path = ft_strdup("./assets/sprites/guts.xpm");
 	init_texture(&env, &(env.assets.n));
 	init_texture(&env, &(env.assets.s));
 	init_texture(&env, &(env.assets.e));

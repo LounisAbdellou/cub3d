@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:48:19 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/23 23:06:12 by solid_42         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:51:22 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	render_walls(t_env *env, t_point pos)
 {
 	int		i;
 	t_ray	ray;
+	t_ray	prev_ray;
 	double	end;
 	double	origin;
 
@@ -78,7 +79,7 @@ void	render_walls(t_env *env, t_point pos)
 	while (i < env->screen_w)
 	{
 		ray.index = i;
-		init_ray(env, pos, &ray);
+		init_ray(env, pos, &ray, &prev_ray);
 		origin = (env->screen_h / 2) - (ray.height / 2);
 		end = (env->screen_h / 2) + (ray.height / 2);
 		if (end > env->screen_h)
@@ -89,6 +90,7 @@ void	render_walls(t_env *env, t_point pos)
 		ray.angle += (env->fov_rd / env->screen_w);
 		if (ray.angle > M_PI * 2)
 			ray.angle -= M_PI * 2;
+		prev_ray = ray;
 		i++;
 	}
 }
@@ -120,13 +122,14 @@ void	draw_rays(t_env *env, t_point p1)
 {
 	int		i;
 	t_ray	ray;
+	t_ray	prev_ray;
 	t_point	p2;
 
 	i = 0;
 	ray.angle = env->player.angle - (env->fov_rd / 2);
 	while (i < env->screen_w)
 	{
-		init_ray(env, p1, &ray);
+		init_ray(env, p1, &ray, &prev_ray);
 		ray.distance /= cos(nor_angle(ray.angle - env->player.angle));
 		p2.x = p1.x + (cos(ray.angle) * ray.distance);
 		p2.y = p1.y + (sin(ray.angle) * ray.distance);
@@ -134,6 +137,7 @@ void	draw_rays(t_env *env, t_point p1)
 		ray.angle += (env->fov_rd / env->screen_w);
 		if (ray.angle > M_PI * 2)
 			ray.angle -= M_PI * 2;
+		prev_ray = ray;
 		i++;
 	}
 }
@@ -143,12 +147,12 @@ void	render(t_env *env)
 	env->img.ptr = mlx_new_image(env->mlx, env->screen_w, env->screen_h);
 	env->img.addr = mlx_get_data_addr(env->img.ptr, &(env->img.bits_per_pixel),
 			&(env->img.line_length), &(env->img.endian));
-	// draw_walls(env);
-	// draw_grid(env);
-	// draw_player(env, env->player.pos.x, env->player.pos.y, TILE_SIZE / 4);
-	// draw_rays(env, env->player.pos);
-	render_floor_ceiling(env);
-	render_walls(env, env->player.pos);
+	draw_walls(env);
+	draw_grid(env);
+	draw_player(env, env->player.pos.x, env->player.pos.y, TILE_SIZE / 4);
+	draw_rays(env, env->player.pos);
+	// render_floor_ceiling(env);
+	// render_walls(env, env->player.pos);
 	mlx_put_image_to_window(env->mlx, env->win, env->img.ptr, 0, 0);
 	mlx_destroy_image(env->mlx, env->img.ptr);
 }
