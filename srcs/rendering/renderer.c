@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:48:19 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/27 16:24:08 by solid_42         ###   ########.fr       */
+/*   Updated: 2024/10/27 22:18:38 by solid_42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,16 +118,30 @@ void	render_floor_ceiling(t_env *env)
 	}
 }
 
+void	draw_minimap(t_env *env)
+{
+	t_point	pos;
+	int		size;
+	int		offset;
+
+	size = 400;
+	offset = 20;
+	pos.x = offset;
+	pos.y = offset;
+	ft_draw_square(env, pos, size, 0x000000);
+	draw_walls(env, env->player.pos, size, offset);
+	draw_grid(env, env->player.pos, size, offset);
+	draw_player(env, offset, size, TILE_SIZE / 4);
+}
+
 void	render(t_env *env)
 {
 	env->img.ptr = mlx_new_image(env->mlx, env->screen_w, env->screen_h);
 	env->img.addr = mlx_get_data_addr(env->img.ptr, &(env->img.bits_per_pixel),
 			&(env->img.line_length), &(env->img.endian));
-	/* draw_walls(env); */
-	/* draw_grid(env); */
-	/* draw_player(env, env->player.pos.x, env->player.pos.y, TILE_SIZE / 4); */
 	render_floor_ceiling(env);
 	render_walls(env, env->player.pos);
+	draw_minimap(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img.ptr, 0, 0);
 	mlx_destroy_image(env->mlx, env->img.ptr);
 }

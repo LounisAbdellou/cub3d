@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/27 16:15:28 by solid_42         ###   ########.fr       */
+/*   Updated: 2024/10/27 22:23:44 by solid_42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,9 +131,9 @@ void	move(int keycode, t_env *env);
 void	rotate(int keycode, int distance, int sensi, t_env *env);
 
 // MAP
-void	draw_grid(t_env *env);
-void	draw_walls(t_env *env);
-void	draw_angle(t_env *env, int size);
-void	draw_player(t_env *env, int x, int y, int size);
+void	draw_grid(t_env *env, t_point pos, size_t size, int offset);
+void	draw_walls(t_env *env, t_point pos, size_t size, int offset);
+void	draw_angle(t_env *env, t_point pos, int size);
+void	draw_player(t_env *env, int offset, int size, int player_size);
 
 #endif
