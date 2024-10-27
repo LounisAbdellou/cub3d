@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:09:41 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/23 23:08:45 by solid_42         ###   ########.fr       */
+/*   Updated: 2024/10/27 16:15:44 by solid_42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ void	draw_walls(t_env *env)
 	}
 }
 
-void	draw_angle(t_env *env)
+void	draw_angle(t_env *env, int size)
 {
 	t_point	p1;
 	t_point	p2;
 
-	p1.x = env->player.pos.x;
-	p1.y = env->player.pos.y;
+	p1.x = env->player.pos.x + (size / 2);
+	p1.y = env->player.pos.y + (size / 2);
 	p2.x = p1.x + (cos(env->player.angle) * 20);
 	p2.y = p1.y + (sin(env->player.angle) * 20);
 	ft_draw_line(env, p1, p2, 0xFFFF00);
@@ -81,8 +81,8 @@ void	draw_player(t_env *env, int x, int y, int size)
 {
 	t_point	p;
 
-	p.x = x - (size / 2);
-	p.y = y - (size / 2);
+	p.x = x;
+	p.y = y;
 	ft_draw_square(env, p, size, 0xFF0000);
-	draw_angle(env);
+	draw_angle(env, size);
 }
