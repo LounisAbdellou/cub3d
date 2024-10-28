@@ -6,7 +6,7 @@
 /*   By: rbouselh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:27:43 by rbouselh          #+#    #+#             */
-/*   Updated: 2024/10/28 16:34:16 by rbouselh         ###   ########.fr       */
+/*   Updated: 2024/10/28 18:45:30 by rbouselh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,13 @@ static void	is_map_close(char **map, t_env *env)
 	}
 }
 
-static int	is_spawn_line(char *line, int y, t_env *env)
+static int	is_spawn_line(char *line, int y, t_env *env, char **map)
 {
 	int	x;
+	int	spawn;
 
 	x = 0;
+	spawn = 0;
 	while (line[x])
 	{
 		if (line[x] == 'N' || line[x] == 'W' || line[x] == 'E' ||
@@ -98,10 +100,14 @@ static int	is_spawn_line(char *line, int y, t_env *env)
 		{
 			env->player->pos_x = x;
 			env->player->pos_y = y;
-			return (1);
+			spawn++;
 		}
 		x++;
 	}
+	if (spawn == 1)
+		return (1);
+	if (spawn > 1)
+		handle_map_error("Multiple spawn in map\n", map, env);
 	return (0);
 }
 
@@ -120,12 +126,14 @@ void	check_map(t_env *env)
 	{
 		if (spawn > 1)
 			handle_map_error("Multiple spawn in map\n", map, env);
-		spawn += is_spawn_line(env->map[i], i, env);
+		spawn += is_spawn_line(env->map[i], i, env, map);
 		map[i] = ft_strdup(env->map[i]);
 		if (!map[i])
 			handle_map_error("Malloc failed\n", map, env);
 		i++;
 	}
+	if (spawn != 1)
+		handle_map_error("No spawn in map\n", map, env);
 	is_map_close(map, env);
 	ft_free_tab(map);
 }
