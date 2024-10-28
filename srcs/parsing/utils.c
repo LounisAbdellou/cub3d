@@ -6,7 +6,7 @@
 /*   By: rbouselh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:17:05 by rbouselh          #+#    #+#             */
-/*   Updated: 2024/10/16 15:59:50 by rbouselh         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:25:42 by rbouselh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,31 @@ int	is_empty_line(char *line)
 	if (!line[i])
 		return (1);
 	return (0);
+}
+
+int	is_map_line(char *line)
+{
+	int		i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (!ft_strchr("01NSWE", line[i]) && !ft_isspace(line[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	get_type_place(char c)
+{
+	if (c == '0')
+		return (1);
+	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
+		return (2);
+	if (c == '1' || c == 'X')
+		return (0);
+	return (-1);
 }
 
 int	get_type_data(char *line, t_env *env)
@@ -42,7 +67,7 @@ int	get_type_data(char *line, t_env *env)
 		return (5);
 	if (!ft_strncmp(line, "C ", 2))
 		return (6);
-	if (!is_empty_line(line) && is_env_set(env) && env->lst_map)
+	if (is_map_line(line))
 		return (7);
 	return (-1);
 }
@@ -59,26 +84,4 @@ int	get_pos_data(char *line)
 	if (!line[i])
 		return (0);
 	return (i);
-}
-
-void	convert_to_map(t_env *env)
-{
-	t_lst	*current;
-	t_lst	*next;
-	int		i;
-
-	i = 0;
-	current = env->lst_map;
-	env->map = ft_calloc(lstsize(current) + 1, sizeof(char *));
-	if (!env->map)
-		return_error("Malloc failed at map conversion\n", 1, env);
-	while (current)
-	{
-		next = current->next;
-		env->map[i] = ft_strdup(current->content);
-		if (!env->map[i])
-			return_error("Malloc failed at map conversion\n", 1, env);
-		current = next;
-		i++;
-	}
 }

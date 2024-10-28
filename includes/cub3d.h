@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/16 16:16:38 by rbouselh         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:33:00 by rbouselh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,21 @@ void	return_error(char *error_message, int exit_status, t_env *env);
 int		check_filename(char *path, char *extension);
 void	extract_from_file(t_env *env);
 int		is_empty_line(char *line);
+int		is_map_line(char *line);
 int		get_type_data(char *line, t_env *env);
 int		get_pos_data(char *line);
 void	convert_to_map(t_env *env);
 int		is_env_set(t_env *env);
 void	set_env_path(char *path, int type, t_env *env);
 void	set_env_color(int *rgb, int type, t_env *env);
-int		handle_extract_error(char *line, t_env *env, int is_sys);
-int		handle_data_error(char *line, t_env *env, int why);
+int		handle_error(char *msg, char *line, t_env *env);
+int		handle_rgb_error(char **extract, char *line, t_env *env);
+int		handle_map_error(char *msg, char **map, t_env *env);
+int		check_line(char *line, int type, t_env *env);
+int		get_type_place(char c);
+void	check_map(t_env *env);
+
+// LST_MAP
 t_lst	*lstnew(char *content);
 t_lst	*lstlast(t_lst *lst);
 int		lstsize(t_lst *lst);
