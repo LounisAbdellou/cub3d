@@ -6,7 +6,7 @@
 /*   By: solid_42 </var/spool/mail/solid_42>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 12:12:47 by solid_42          #+#    #+#             */
-/*   Updated: 2024/10/06 12:45:30 by solid_42         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:12:48 by rbouselh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,28 @@ void	free_env(t_env *env)
 {
 	if (env->map != NULL)
 		ft_free_tab(env->map);
+	if (env->lst_map != NULL)
+		free_lst(&(env->lst_map));
 	if (env->win != NULL)
 		mlx_destroy_window(env->mlx, env->win);
 	if (env->mlx != NULL)
 	{
 		mlx_destroy_display(env->mlx);
 		free(env->mlx);
+	}
+	if (env->player)
+		free(env->player);
+	if (env->texture)
+	{
+		if (env->texture->path_n)
+			free(env->texture->path_n);
+		if (env->texture->path_s)
+			free(env->texture->path_s);
+		if (env->texture->path_w)
+			free(env->texture->path_w);
+		if (env->texture->path_e)
+			free(env->texture->path_e);
+		free(env->texture);
 	}
 }
 
