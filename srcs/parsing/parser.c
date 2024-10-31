@@ -6,7 +6,7 @@
 /*   By: rbouselh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:33:30 by rbouselh          #+#    #+#             */
-/*   Updated: 2024/10/29 16:49:14 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:17:20 by rbouselh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,4 +142,5 @@ void	extract_from_file(t_env *env)
 	close(env->fd);
 	convert_to_map(env);
 	check_map(env);
+	convert_to_wmap(env);
 }

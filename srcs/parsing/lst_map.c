@@ -6,7 +6,7 @@
 /*   By: rbouselh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:43:11 by rbouselh          #+#    #+#             */
-/*   Updated: 2024/10/28 15:13:18 by rbouselh         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:03:35 by rbouselh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,21 @@ t_lst	*lstlast(t_lst *lst)
 	while (lst->next != NULL)
 		lst = lst->next;
 	return (lst);
+}
+
+int	lstsize(t_lst *lst)
+{
+	t_lst	*current;
+	int		i;
+
+	i = 0;
+	current = lst;
+	while (current)
+	{
+		i++;
+		current = current->next;
+	}
+	return (i);
 }
 
 void	lstadd_back(t_lst **lst, t_lst *new)
@@ -62,33 +77,4 @@ void	free_lst(t_lst **lst)
 		current = next;
 	}
 	return ;
-}
-
-void	convert_to_map(t_env *env)
-{
-	t_lst	*current;
-	t_lst	*next;
-	int		i;
-
-	i = 0;
-	current = env->lst_map;
-	while (current)
-	{
-		current = current->next;
-		i++;
-	}
-	env->map = ft_calloc(i + 1, sizeof(char *));
-	if (!env->map)
-		return_error("Malloc failed at map conversion\n", 1, env);
-	i = 0;
-	current = env->lst_map;
-	while (current)
-	{
-		next = current->next;
-		env->map[i] = ft_strdup(current->content);
-		if (!env->map[i])
-			return_error("Malloc failed at map conversion\n", 1, env);
-		current = next;
-		i++;
-	}
 }
