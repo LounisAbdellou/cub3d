@@ -6,18 +6,35 @@
 /*   By: solid_42 </var/spool/mail/solid_42>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 12:12:47 by solid_42          #+#    #+#             */
-/*   Updated: 2024/10/16 16:12:48 by rbouselh         ###   ########.fr       */
+/*   Updated: 2024/10/30 17:38:56 by rbouselh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_env(t_env *env)
+static void	free_maps(t_env *env)
 {
+	int	i;
+
+	i = 0;
+	if (env->w_map)
+	{
+		while (env->w_map[i])
+		{
+			free(env->w_map[i]);
+			i++;
+		}
+		free(env->w_map);
+	}
 	if (env->map != NULL)
 		ft_free_tab(env->map);
 	if (env->lst_map != NULL)
 		free_lst(&(env->lst_map));
+}
+
+void	free_env(t_env *env)
+{
+	free_maps(env);
 	if (env->win != NULL)
 		mlx_destroy_window(env->mlx, env->win);
 	if (env->mlx != NULL)

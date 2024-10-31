@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/10/28 15:33:00 by rbouselh         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:05:19 by rbouselh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,10 @@ typedef struct s_env
 	void		*mlx;
 	void		*win;
 	char		**map;
+	int			**w_map;
+	int			map_w;
+	int			map_h;
+	int			tile_size;
 	int			screen_w;
 	int			screen_h;
 	int			fd;
@@ -98,6 +102,7 @@ int		is_map_line(char *line);
 int		get_type_data(char *line, t_env *env);
 int		get_pos_data(char *line);
 void	convert_to_map(t_env *env);
+void	convert_to_wmap(t_env *env);
 int		is_env_set(t_env *env);
 void	set_env_path(char *path, int type, t_env *env);
 void	set_env_color(int *rgb, int type, t_env *env);

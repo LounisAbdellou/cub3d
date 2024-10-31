@@ -6,7 +6,7 @@
 /*   By: rbouselh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:22:29 by rbouselh          #+#    #+#             */
-/*   Updated: 2024/10/16 16:18:21 by rbouselh         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:04:17 by rbouselh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,58 @@ void	set_env_color(int *rgb, int type, t_env *env)
 		env->texture->is_ceil = 1;
 		env->texture->ceil = color;
 	}
+}
+
+void	convert_to_map(t_env *env)
+{
+	t_lst	*current;
+	t_lst	*next;
+	int		i;
+	int		max_w;
+
+	i = 0;
+	max_w = 0;
+	current = env->lst_map;
+	env->map = ft_calloc(lstsize(current) + 1, sizeof(char *));
+	if (!env->map)
+		return_error("Malloc failed at map conversion\n", 1, env);
+	while (current)
+	{
+		next = current->next;
+		env->map[i] = ft_strdup(current->content);
+		if (!env->map[i])
+			return_error("Malloc failed at map conversion\n", 1, env);
+		if ((int)ft_strlen(env->map[i]) > max_w)
+			max_w = (int)ft_strlen(env->map[i]);
+		current = next;
+		i++;
+	}
+	env->map_w = max_w;
+}
+
+void	convert_to_wmap(t_env *env)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	env->map_h = ft_tablen(env->map);
+	env->w_map = ft_calloc(env->map_h + 1, sizeof(int *));
+	if (!env->w_map)
+		return_error("Malloc failed at map conversion\n", 1, env);
+	while (env->map[i])
+	{
+		env->w_map[i] = ft_calloc(env->map_w + 1, sizeof(int));
+		if (!env->w_map[i])
+			return_error("Malloc failed at map conversion\n", 1, env);
+		j = 0;
+		while (env->map[i][j])
+		{
+			if (env->map[i][j] == '1')
+				env->w_map[i][j] = 1;
+			j++;
+		}
+		i++;
+	}
+	env->tile_size = env->map_h + env->map_w;
 }

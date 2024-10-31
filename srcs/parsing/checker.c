@@ -6,7 +6,7 @@
 /*   By: rbouselh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:27:43 by rbouselh          #+#    #+#             */
-/*   Updated: 2024/10/28 18:45:30 by rbouselh         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:01:48 by rbouselh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ static int	is_spawn_line(char *line, int y, t_env *env, char **map)
 	spawn = 0;
 	while (line[x])
 	{
-		if (line[x] == 'N' || line[x] == 'W' || line[x] == 'E' ||
-			line[x] == 'S')
+		if (line[x] == 'N' || line[x] == 'W' || line[x] == 'E'
+			|| line[x] == 'S')
 		{
 			env->player->pos_x = x;
 			env->player->pos_y = y;

@@ -6,7 +6,7 @@
 /*   By: rbouselh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:33:30 by rbouselh          #+#    #+#             */
-/*   Updated: 2024/10/28 16:53:14 by rbouselh         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:02:20 by rbouselh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	extract_rgb(char *data, int start, int type, t_env *env)
 	int		i;
 	int		j;
 	char	**extract;
-	
+
 	i = 0;
 	extract = ft_split(data + start, ',');
 	if (!extract)
@@ -142,4 +142,5 @@ void	extract_from_file(t_env *env)
 	close(env->fd);
 	convert_to_map(env);
 	check_map(env);
+	convert_to_wmap(env);
 }
