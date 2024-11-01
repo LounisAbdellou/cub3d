@@ -6,7 +6,7 @@
 /*   By: rbouselh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 17:50:32 by rbouselh          #+#    #+#             */
-/*   Updated: 2024/10/31 18:43:43 by rbouselh         ###   ########.fr       */
+/*   Updated: 2024/11/01 15:53:32 by rbouselh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static void	free_maps(t_env *env)
 
 void	free_env(t_env *env)
 {
+	if (!env->mlx)
+		return ;
 	free_asset(env->asset.n, env);
 	free_asset(env->asset.s, env);
 	free_asset(env->asset.e, env);

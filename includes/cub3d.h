@@ -133,7 +133,6 @@ t_texture	get_texture(t_env *env, t_ray ray);
 
 // ENV
 int			destroy(t_env *env);
-int			handle_mouse(int x, int y, t_env *env);
 int			handle_keydown(int keycode, t_env *env);
 void		free_env(t_env *env);
 void		init_env(t_env *env);
@@ -163,6 +162,7 @@ int			check_line(char *line, int type, t_env *env);
 int			get_type_place(char c);
 void		check_map(t_env *env);
 void		set_player_angle(char pos, t_env *env);
+char		**ft_rgb_split(char *data, int start, char c, t_env *env);
 
 // LST_MAP
 t_lst		*lstnew(char *content);

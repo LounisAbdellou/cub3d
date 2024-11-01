@@ -6,7 +6,7 @@
 /*   By: rbouselh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:27:43 by rbouselh          #+#    #+#             */
-/*   Updated: 2024/10/31 17:35:26 by rbouselh         ###   ########.fr       */
+/*   Updated: 2024/11/01 15:55:53 by rbouselh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ static int	is_spawn_line(char *line, int y, t_env *env, char **map)
 			|| line[x] == 'S')
 		{
 			set_player_angle(line[x], env);
-			env->player.pos.x = x * TILE_SIZE;
-			env->player.pos.y = y * TILE_SIZE;
+			env->player.pos.x = (x * TILE_SIZE) + (TILE_SIZE / 2);
+			env->player.pos.y = (y * TILE_SIZE) + (TILE_SIZE / 2);
 			spawn++;
 		}
 		x++;
