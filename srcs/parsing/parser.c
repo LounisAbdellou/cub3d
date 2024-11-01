@@ -6,7 +6,7 @@
 /*   By: rbouselh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:33:30 by rbouselh          #+#    #+#             */
-/*   Updated: 2024/10/29 16:49:14 by labdello         ###   ########.fr       */
+/*   Updated: 2024/11/01 16:16:03 by rbouselh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int	extract_rgb(char *data, int start, int type, t_env *env)
 	char	**extract;
 
 	i = 0;
-	extract = ft_split(data + start, ',');
+	extract = ft_rgb_split(data, start, ',', env);
 	if (!extract)
 		handle_error("Malloc failed\n", data, env);
 	if (ft_tablen(extract) != 3)
@@ -142,4 +142,5 @@ void	extract_from_file(t_env *env)
 	close(env->fd);
 	convert_to_map(env);
 	check_map(env);
+	convert_to_wmap(env);
 }

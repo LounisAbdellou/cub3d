@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 13:28:39 by labdello          #+#    #+#             */
-/*   Updated: 2024/09/17 18:04:01 by labdello         ###   ########.fr       */
+/*   Updated: 2024/10/08 22:19:41 by solid_42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void		*ft_memmove(void *dest, const void *src, size_t n);
 void		*ft_memset(void *s, int value, size_t n);
 void		ft_puthex_fd(unsigned int hex, int capitilize, int fd);
 char		**ft_tabdup(char **src_tab);
+void		ft_swap(int *a, int *b);
 void		ft_free_tab(char **tab);
 void		ft_print_tab(char **tab);
 void		ft_print_2dtab(char ***tab);

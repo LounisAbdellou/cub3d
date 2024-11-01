@@ -10,10 +10,14 @@ OBJ_DIR = objs
 SRC_DIR = srcs
 ENV_DIR = env
 PARSING_DIR = parsing
+RENDER_DIR = rendering
+GAME_DIR = gameplay
 
-ENV = $(addprefix $(ENV_DIR)/, init.c utils.c error.c)
-PARSING = $(addprefix $(PARSING_DIR)/, parser.c checker.c utils.c env.c lst_map.c errors.c)
-SRCS = $(addprefix $(SRC_DIR)/, $(ENV) $(PARSING) main.c)
+ENV = $(addprefix $(ENV_DIR)/, init.c utils.c free.c error.c)
+PARSING = $(addprefix $(PARSING_DIR)/, parser.c checker.c utils.c env.c lst_map.c setter.c errors.c)
+RENDER = $(addprefix $(RENDER_DIR)/, renderer.c utils.c raycasting.c texture.c map.c)
+GAMEPLAY = $(addprefix $(GAME_DIR)/, movement.c)
+SRCS = $(addprefix $(SRC_DIR)/, $(ENV) $(PARSING) $(GAMEPLAY) $(RENDER) main.c)
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
@@ -31,6 +35,8 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
 	mkdir -p $(OBJ_DIR)/$(PARSING_DIR)
+	mkdir -p $(OBJ_DIR)/$(GAME_DIR)
+	mkdir -p $(OBJ_DIR)/$(RENDER_DIR)
 
 clean:
 	@make clean -C libft
